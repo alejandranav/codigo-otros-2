@@ -20,6 +20,9 @@ body {
 .error {
   background-color: red;
 }
+.good {
+  background-color: rgb(30, 168, 9);
+}
 
 .elemento-lista {
   color: #4b1248;

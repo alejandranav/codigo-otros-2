@@ -1,8 +1,14 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector("form")
+var btnenv= document.getElementById("btnenv")
+var nombre= document.getElementById("name")
+var edad= document.getElementById("age")
+var nacionalidad= document.getElementById("nationality")
+var btnenv= document.getElementById("btnenv")
 
-formulario.onsubmit = function(e) {
 
-  e.prevent();
+
+btnenv.addEventListener ("click", function(event) {
+  event.preventDefault();
   
   var n = formulario.elements[0]
   var e = formulario.elements[1]
@@ -10,7 +16,6 @@ formulario.onsubmit = function(e) {
 
   var nombre = n.value
   var edad = e.value
-
   var i = na.selectedIndex
   var nacionalidad = na.options[i].value
   console.log(nombre, edad)
@@ -18,17 +23,21 @@ formulario.onsubmit = function(e) {
 
   if (nombre.length === 0) {
     n.classList.add("error")
+  } else{
+    n.classList.add("good")
   }
   if (edad < 18 || edad > 120) {
     e.classList.add("error")
+  } else{
+    n.classList.add("good")
   }
 
-if (nombre.length > 0 
+  if (nombre.length > 0 
   && (edad > 18 
     && edad < 120) ) {
   agregarInvitado(nombre, edad, nacionalidad)
   }
-}
+})
 
 var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
@@ -55,17 +64,8 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista")
 lista.appendChild(elementoLista)
-
-var spanNombre = document.createElement("span")
-var inputNombre = document.createElement("input")
-var espacio = document.createElement("br")
-spanNombre.textContent = "Nombre: "
-inputNombre.value = nombre 
-elementoLista.appendChild(spanNombre)
-elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
@@ -82,16 +82,11 @@ crearElemento("Nombre", nombre)
 crearElemento("Edad", edad)
 crearElemento("Nacionalidad", nacionalidad)
 
-
-var botonBorrar = document.createElement("button")
-botonBorrar.textContent = "Eliminar invitado"
-botonBorrar.id = "boton-borrar"
-var corteLinea = document.createElement("br")
-elementoLista.appendChild(corteLinea)
-elementoLista.appendChild(botonBorrar);
-
  botonBorrar.onclick = function() {
-// this.parentNode.style.display = 'none';
-botonBorrar.parentNode.remove()
+  if(lista<0){
+    console.log("No hay invitados")
+  } else{
+    elementoLista.remove()
   }
-}
+    }
+  }
